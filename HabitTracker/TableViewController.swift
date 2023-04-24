@@ -33,15 +33,18 @@ class TableViewController: UITableViewController {
         return mockList.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "habitCell", for: indexPath)
 
+        
+        let habitName = mockList[indexPath.row]
+        cell.textLabel?.text = habitName.name
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

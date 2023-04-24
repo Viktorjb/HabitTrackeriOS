@@ -54,7 +54,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="VPe-p4-aK8">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="habitCell" id="VPe-p4-aK8">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VPe-p4-aK8" id="2ce-NO-tAZ">
@@ -68,11 +68,44 @@
                             <outlet property="delegate" destination="8Dy-Wd-1uf" id="wX1-WK-21V"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="PVI-CP-fJb"/>
+                    <navigationItem key="navigationItem" id="PVI-CP-fJb">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="W9W-oR-CeC">
+                            <connections>
+                                <segue destination="Bx0-0U-ATI" kind="show" id="Geu-4d-5UJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSL-bF-HTp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1958" y="-156"/>
+        </scene>
+        <!--Add Habit View Controller-->
+        <scene sceneID="hEA-Or-HzW">
+            <objects>
+                <viewController id="Bx0-0U-ATI" customClass="AddHabitViewController" customModule="HabitTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4bM-zB-Mh7">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k3I-6u-74D">
+                                <rect key="frame" x="76" y="320" width="240" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BIa-4d-zHt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9aH-id-vac"/>
+                    <connections>
+                        <outlet property="addTextField" destination="k3I-6u-74D" id="v3b-rC-erB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mCa-e1-8ap" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2956.4885496183206" y="-460.56338028169017"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dd9-Wr-ItN">
