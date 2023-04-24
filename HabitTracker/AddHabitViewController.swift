@@ -9,8 +9,17 @@ import UIKit
 
 class AddHabitViewController: UIViewController {
 
+    var mockList = [Habit]()
     
     @IBOutlet weak var addTextField: UITextField!
+    
+    
+    @IBAction func addHabitButton(_ sender: Any) {
+        if let habitString = addTextField.text{
+            mockList.append(Habit(name: habitString))
+            print("ADDED" + habitString)
+        }
+    }
     
     
     override func viewDidLoad() {

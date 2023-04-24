@@ -71,7 +71,7 @@
                     <navigationItem key="navigationItem" id="PVI-CP-fJb">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="W9W-oR-CeC">
                             <connections>
-                                <segue destination="Bx0-0U-ATI" kind="show" id="Geu-4d-5UJ"/>
+                                <segue destination="Bx0-0U-ATI" kind="show" identifier="addHabitSegue" id="Geu-4d-5UJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -94,6 +94,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPn-e7-ZKy">
+                                <rect key="frame" x="132" y="458" width="129" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add!"/>
+                                <connections>
+                                    <action selector="addHabitButton:" destination="Bx0-0U-ATI" eventType="touchUpInside" id="FiR-28-U91"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BIa-4d-zHt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

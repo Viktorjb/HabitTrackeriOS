@@ -9,11 +9,14 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
+    //replace with model list?
     var mockList = [Habit(name: "sleep"), Habit(name: "play")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        for index in mockList{print(index.name)}
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -81,14 +84,19 @@ class TableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if(segue.identifier == "addHabitSegue"){
+            let vc = segue.destination as! AddHabitViewController
+            vc.mockList = mockList
+        }
+        
     }
-    */
+    
 
 }
