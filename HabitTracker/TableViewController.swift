@@ -9,19 +9,20 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    //replace with model list?
-    var mockList = [Habit(name: "sleep"), Habit(name: "play")]
+    var habits = HabitList()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for index in mockList{print(index.name)}
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -33,7 +34,7 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return mockList.count
+        return habits.count
     }
 
     
@@ -41,8 +42,8 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "habitCell", for: indexPath)
 
         
-        let habitName = mockList[indexPath.row]
-        cell.textLabel?.text = habitName.name
+        let habitName = habits.getHabit(index: indexPath.row)
+        cell.textLabel?.text = habitName?.name
         // Configure the cell...
 
         return cell
@@ -93,7 +94,7 @@ class TableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if(segue.identifier == "addHabitSegue"){
             let vc = segue.destination as! AddHabitViewController
-            vc.mockList = mockList
+            vc.habits = habits
         }
         
     }

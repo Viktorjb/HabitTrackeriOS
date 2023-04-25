@@ -12,10 +12,11 @@ class Habit {
     //Name of the habit
     let name : String
     //A list of dates this habit has been performed
-    var performedList = [Date]()
+    var performedList : [Date]
     
     init(name: String) {
         self.name = name
+        self.performedList = [Date]()
     }
     
     
