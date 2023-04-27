@@ -28,6 +28,47 @@ class ViewController: UIViewController {
         print(yesterday(day: "2023/06/30"))
         print(yesterday(day: "2023/08/01"))
         
+        print("----")
+        
+        var dateStringList = [String]()
+        dateStringList.append("2023/08/01")
+        dateStringList.append("2023/08/04")
+        dateStringList.append("2023/07/01")
+        dateStringList.append("2023/07/02")
+        dateStringList.append("2022/07/02")
+        dateStringList.append("2022/08/04")
+        
+        for index in dateStringList{
+            print(index)
+        }
+        
+        print("----")
+        
+        dateStringList = dateStringList.sorted()
+        
+        for index in dateStringList{
+            print(index)
+        }
+        
+        print("----")
+        
+        let habitTest = Habit(name: "Sleep")
+        
+        habitTest.updateStreak()
+        
+        print(String(habitTest.streak))
+        
+        habitTest.doneToday()
+        habitTest.performedList.append("2023/04/26")
+        habitTest.performedList.append("2023/04/25")
+        habitTest.performedList.append("2023/04/24")
+        habitTest.performedList.append("2023/04/22")
+        
+        habitTest.updateStreak()
+        
+        print(String(habitTest.streak))
+        
+        
         
         // Do any additional setup after loading the view.
     }
@@ -60,7 +101,6 @@ class ViewController: UIViewController {
             
         }
         
-        //----
         
         //Convert integers back to formatted string
         let yearString = String(yearInt)
