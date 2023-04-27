@@ -27,6 +27,7 @@ class Habit {
     
     //also needs another init for creating from database (firebase)
     
+    //Add today to the list of dates, i.e. the habit has been performed today
     func doneToday(){
         if(performedList.contains(dateFormatter.string(from: Date()))){
             return
@@ -34,6 +35,7 @@ class Habit {
         performedList.append(dateFormatter.string(from: Date()))
     }
     
+    //Calculate the current streak (from today or yesterday)
     func updateStreak(){
         //Keeping track of the date during the while-loop
         var dateStep = dateFormatter.string(from: Date())
@@ -54,6 +56,7 @@ class Habit {
         }
     }
     
+    //Returns the "date" before the date given
     func yesterday(day: String) -> String{
         //Convert Year/Month/Day to integers
         var yearInt = Int(day.prefix(4)) ?? 11
