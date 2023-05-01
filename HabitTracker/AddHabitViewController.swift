@@ -18,13 +18,18 @@ class AddHabitViewController: UIViewController {
         if let habitString = addTextField.text{
             habits?.add(habit: Habit(name: habitString))
             print("ADDED" + habitString)
+            //return to previous view
+            navigationController?.popViewController(animated: true)
         }
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        addTextField.becomeFirstResponder()
+        
         // Do any additional setup after loading the view.
     }
     

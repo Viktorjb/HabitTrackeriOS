@@ -9,8 +9,11 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    var habits = HabitList()
+    var habits : HabitList?
 
+    let showSingleHabitSegue = "showSingleHabit"
+    let addHabitSegue = "addHabitSegue"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +37,7 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return habits.count
+        return habits?.count ?? 0
     }
 
     
@@ -42,8 +45,17 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "habitCell", for: indexPath)
 
         
-        let habitName = habits.getHabit(index: indexPath.row)
-        cell.textLabel?.text = habitName?.name
+        let habitName = habits?.getHabit(index: indexPath.row)
+        cell.textLabel?.text = (habitName?.name ?? "nil") + String(habitName?.streak ?? 0)
+        
+        //Check if it's been done today
+        let hasBeenDone = habitName?.hasBeenDoneToday() ?? false
+        if(hasBeenDone){
+            cell.contentView.backgroundColor = .green
+        } else{
+            cell.contentView.backgroundColor = .red
+        }
+            
         // Configure the cell...
 
         return cell
@@ -92,9 +104,18 @@ class TableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if(segue.identifier == "addHabitSegue"){
+        if(segue.identifier == addHabitSegue){
             let vc = segue.destination as! AddHabitViewController
             vc.habits = habits
+        } else if(segue.identifier == showSingleHabitSegue){
+            guard let vc = segue.destination as? ShowSingleHabitViewController else {return}
+            
+            guard let cell = sender as? UITableViewCell else {return}
+            guard let indexPath = tableView.indexPath(for: cell) else {return}
+            guard let habit = habits?.getHabit(index: indexPath.row) else {return}
+            
+            
+            vc.habit = habit
         }
         
     }

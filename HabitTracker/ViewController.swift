@@ -9,6 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    //Main model object
+    var habits = HabitList()
+    
+    let tableViewSegue = "tableViewSegue"
+    
     @IBOutlet weak var toListButton: UIButton!
     
     override func viewDidLoad() {
@@ -115,6 +120,15 @@ class ViewController: UIViewController {
         let newString = yearString + "/" + monthString + "/" + dayString
         
         return newString
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if(segue.identifier == tableViewSegue){
+            let vc = segue.destination as! TableViewController
+            vc.habits = habits
+        }
     }
 
 

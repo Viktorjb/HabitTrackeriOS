@@ -35,6 +35,11 @@ class Habit {
         performedList.append(dateFormatter.string(from: Date()))
     }
     
+    //returns if the habit has been done today (as bool)
+    func hasBeenDoneToday() -> Bool {
+        return performedList.contains(dateFormatter.string(from: Date()))
+    }
+    
     //Calculate the current streak (from today or yesterday)
     func updateStreak(){
         //Keeping track of the date during the while-loop
