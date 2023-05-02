@@ -46,7 +46,7 @@ class TableViewController: UITableViewController {
 
         
         let habitName = habits?.getHabit(index: indexPath.row)
-        cell.textLabel?.text = (habitName?.name ?? "nil") + String(habitName?.streak ?? 0)
+        cell.textLabel?.text = (habitName?.name ?? "nil") + "  Streak: " + String(habitName?.streak ?? 0)
         
         //Check if it's been done today, and colour the cell
         let hasBeenDone = habitName?.hasBeenDoneToday() ?? false
