@@ -30,6 +30,12 @@ class HabitList {
         return nil
     }
     
+    func bestStreaks() -> [Habit]{
+        let sortedHabitList = habits.sorted(by: {$1.streak > $0.streak} )
+        let prefixedList = Array(sortedHabitList.prefix(3))
+        return prefixedList
+    }
+    
     
     
 }

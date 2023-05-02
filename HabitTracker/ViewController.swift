@@ -14,10 +14,15 @@ class ViewController: UIViewController {
     
     let tableViewSegue = "tableViewSegue"
     
+    @IBOutlet weak var bestStreaksTextView: UITextView!
     @IBOutlet weak var toListButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Write out best streaks
+        updateStreakList()
+        
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
@@ -76,6 +81,20 @@ class ViewController: UIViewController {
         
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateStreakList()
+    }
+    
+    //Write out best streaks
+    func updateStreakList(){
+        var bestStreakText = "Best streaks:\n"
+        let streakList = habits.bestStreaks()
+        for habit in streakList{
+            bestStreakText.append("\n" + habit.name + ": " + String(habit.streak))
+        }
+        bestStreaksTextView.text = bestStreakText
     }
     
     func yesterday(day: String) -> String{

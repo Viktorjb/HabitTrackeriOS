@@ -27,6 +27,14 @@
                                     <segue destination="8Dy-Wd-1uf" kind="show" identifier="tableViewSegue" id="csf-Nu-mkX"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Best Streaks:" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="75Q-Xl-4T1">
+                                <rect key="frame" x="76" y="362" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -38,6 +46,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="UfP-F0-TGD"/>
                     <connections>
+                        <outlet property="bestStreaksTextView" destination="75Q-Xl-4T1" id="LAO-Wh-sQ4"/>
                         <outlet property="toListButton" destination="UeK-Ls-1V5" id="GRX-TR-shq"/>
                     </connections>
                 </viewController>
@@ -45,7 +54,7 @@
             </objects>
             <point key="canvasLocation" x="947.32824427480909" y="4.9295774647887329"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Habit List-->
         <scene sceneID="bdb-6p-cj6">
             <objects>
                 <tableViewController id="8Dy-Wd-1uf" customClass="TableViewController" customModule="HabitTracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -71,7 +80,7 @@
                             <outlet property="delegate" destination="8Dy-Wd-1uf" id="wX1-WK-21V"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="PVI-CP-fJb">
+                    <navigationItem key="navigationItem" title="Habit List" id="PVI-CP-fJb">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="W9W-oR-CeC">
                             <connections>
                                 <segue destination="Bx0-0U-ATI" kind="show" identifier="addHabitSegue" id="Geu-4d-5UJ"/>
@@ -83,7 +92,7 @@
             </objects>
             <point key="canvasLocation" x="1956.4885496183206" y="-156.33802816901408"/>
         </scene>
-        <!--Show Single Habit View Controller-->
+        <!--Habit Details-->
         <scene sceneID="IHC-vT-OFP">
             <objects>
                 <viewController id="WBi-nM-T7d" customClass="ShowSingleHabitViewController" customModule="HabitTracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -91,13 +100,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="g6K-bo-04s">
-                                <rect key="frame" x="76" y="194" width="240" height="128"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="g6K-bo-04s">
+                                <rect key="frame" x="76" y="153" width="240" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3f-px-yOh">
@@ -109,21 +118,36 @@
                                     <action selector="doneButton:" destination="WBi-nM-T7d" eventType="touchUpInside" id="Ip9-ad-A1b"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current streak:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ub-WG-t3I">
+                                <rect key="frame" x="99" y="264" width="194" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yIe-iZ-bfm">
+                                <rect key="frame" x="138" y="327" width="118" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xtf-BR-IRK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="57R-al-C9h"/>
+                    <navigationItem key="navigationItem" title="Habit Details" id="57R-al-C9h"/>
                     <connections>
                         <outlet property="doneButtonOutlet" destination="N3f-px-yOh" id="4Do-lC-D0N"/>
                         <outlet property="habitNameTextView" destination="g6K-bo-04s" id="POu-rD-jDr"/>
+                        <outlet property="habitStreakLabel" destination="yIe-iZ-bfm" id="7fd-Bb-Mxp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4DR-5N-opO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2954.9618320610684" y="298.59154929577466"/>
         </scene>
-        <!--Add Habit View Controller-->
+        <!--Add New Habit-->
         <scene sceneID="hEA-Or-HzW">
             <objects>
                 <viewController id="Bx0-0U-ATI" customClass="AddHabitViewController" customModule="HabitTracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -146,11 +170,18 @@
                                     <action selector="addHabitButton:" destination="Bx0-0U-ATI" eventType="touchUpInside" id="FiR-28-U91"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter habit name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7h1-1g-K5u">
+                                <rect key="frame" x="80" y="233" width="233" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BIa-4d-zHt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9aH-id-vac"/>
+                    <navigationItem key="navigationItem" title="Add New Habit" id="9aH-id-vac"/>
                     <connections>
                         <outlet property="addTextField" destination="k3I-6u-74D" id="v3b-rC-erB"/>
                     </connections>

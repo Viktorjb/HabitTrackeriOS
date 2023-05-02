@@ -13,6 +13,7 @@ class ShowSingleHabitViewController: UIViewController {
     
     @IBOutlet weak var doneButtonOutlet: UIButton!
     @IBOutlet weak var habitNameTextView: UITextView!
+    @IBOutlet weak var habitStreakLabel: UILabel!
     
     //Handle button tap, if habit hasn't been done today, if it has do nothing
     @IBAction func doneButton(_ sender: Any) {
@@ -29,6 +30,9 @@ class ShowSingleHabitViewController: UIViewController {
         super.viewDidLoad()
 
         habitNameTextView.text = habit?.name
+        if let streakNumber = habit?.streak {
+            habitStreakLabel.text = String(streakNumber)
+        }
         
         let hasBeenDone = habit?.hasBeenDoneToday() ?? false
         if(hasBeenDone){
