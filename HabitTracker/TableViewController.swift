@@ -48,12 +48,12 @@ class TableViewController: UITableViewController {
         let habitName = habits?.getHabit(index: indexPath.row)
         cell.textLabel?.text = (habitName?.name ?? "nil") + String(habitName?.streak ?? 0)
         
-        //Check if it's been done today
+        //Check if it's been done today, and colour the cell
         let hasBeenDone = habitName?.hasBeenDoneToday() ?? false
         if(hasBeenDone){
-            cell.contentView.backgroundColor = .green
+            cell.contentView.backgroundColor = UIColor(red: 18/256, green: 178/256, blue: 29/256, alpha: 0.65)
         } else{
-            cell.contentView.backgroundColor = .red
+            cell.contentView.backgroundColor = UIColor(red: 200/256, green: 18/256, blue: 29/256, alpha: 0.65)
         }
             
         // Configure the cell...
