@@ -15,6 +15,7 @@ class Habit {
     //Dates will be strings in the format of yyyy/MM/dd
     var performedList : [String]
     var streak : Int
+    var bestStreak : Int
     
     let dateFormatter = DateFormatter()
     
@@ -23,6 +24,7 @@ class Habit {
         self.performedList = [String]()
         self.streak = 0
         self.dateFormatter.dateFormat = "yyyy/MM/dd"
+        self.bestStreak = 0
     }
     
     //also needs another init for creating from database (firebase)
@@ -58,6 +60,10 @@ class Habit {
             } else{
                 break
             }
+        }
+        //If streak is higher than ever before, update bestStreak
+        if(streak > bestStreak){
+            bestStreak = streak
         }
     }
     
