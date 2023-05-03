@@ -61,6 +61,10 @@ class TableViewController: UITableViewController {
         return cell
     }
     
+    //function for the firestore snapshot listener to access
+    func reloadTableView(){
+        tableView.reloadData()
+    }
 
     /*
     // Override to support conditional editing of the table view.

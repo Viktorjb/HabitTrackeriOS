@@ -11,6 +11,10 @@
 		7707083729F6C42600444AF7 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7707083629F6C42600444AF7 /* TableViewController.swift */; };
 		7707083929F6C86700444AF7 /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7707083829F6C86700444AF7 /* AddHabitViewController.swift */; };
 		7709F5F82A00210D000D116D /* ShowSingleHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709F5F72A00210D000D116D /* ShowSingleHabitViewController.swift */; };
+		7709F5FB2A030638000D116D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7709F5FA2A030638000D116D /* FirebaseAuth */; };
+		7709F5FD2A030638000D116D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7709F5FC2A030638000D116D /* FirebaseFirestore */; };
+		7709F5FF2A030638000D116D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7709F5FE2A030638000D116D /* FirebaseFirestoreSwift */; };
+		7709F6012A030C2A000D116D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7709F6002A030C2A000D116D /* GoogleService-Info.plist */; };
 		77171C7729F8160C00F43A4D /* HabitList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77171C7629F8160C00F43A4D /* HabitList.swift */; };
 		772B96C829F2D4C9005D885B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772B96C729F2D4C9005D885B /* AppDelegate.swift */; };
 		772B96CA29F2D4C9005D885B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772B96C929F2D4C9005D885B /* SceneDelegate.swift */; };
@@ -45,6 +49,7 @@
 		7707083629F6C42600444AF7 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		7707083829F6C86700444AF7 /* AddHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
 		7709F5F72A00210D000D116D /* ShowSingleHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSingleHabitViewController.swift; sourceTree = "<group>"; };
+		7709F6002A030C2A000D116D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		77171C7629F8160C00F43A4D /* HabitList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitList.swift; sourceTree = "<group>"; };
 		772B96C429F2D4C9005D885B /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		772B96C729F2D4C9005D885B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7709F5FB2A030638000D116D /* FirebaseAuth in Frameworks */,
+				7709F5FD2A030638000D116D /* FirebaseFirestore in Frameworks */,
+				7709F5FF2A030638000D116D /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +117,7 @@
 		772B96C629F2D4C9005D885B /* HabitTracker */ = {
 			isa = PBXGroup;
 			children = (
+				7709F6002A030C2A000D116D /* GoogleService-Info.plist */,
 				772B96C729F2D4C9005D885B /* AppDelegate.swift */,
 				772B96C929F2D4C9005D885B /* SceneDelegate.swift */,
 				772B96CB29F2D4C9005D885B /* ViewController.swift */,
@@ -158,6 +167,11 @@
 			dependencies = (
 			);
 			name = HabitTracker;
+			packageProductDependencies = (
+				7709F5FA2A030638000D116D /* FirebaseAuth */,
+				7709F5FC2A030638000D116D /* FirebaseFirestore */,
+				7709F5FE2A030638000D116D /* FirebaseFirestoreSwift */,
+			);
 			productName = HabitTracker;
 			productReference = 772B96C429F2D4C9005D885B /* HabitTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -230,6 +244,9 @@
 				Base,
 			);
 			mainGroup = 772B96BB29F2D4C9005D885B;
+			packageReferences = (
+				7709F5F92A030638000D116D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 772B96C529F2D4C9005D885B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -247,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				772B96D429F2D4CC005D885B /* LaunchScreen.storyboard in Resources */,
+				7709F6012A030C2A000D116D /* GoogleService-Info.plist in Resources */,
 				772B96D129F2D4CC005D885B /* Assets.xcassets in Resources */,
 				772B96CF29F2D4C9005D885B /* Main.storyboard in Resources */,
 			);
@@ -616,6 +634,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7709F5F92A030638000D116D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7709F5FA2A030638000D116D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7709F5F92A030638000D116D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		7709F5FC2A030638000D116D /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7709F5F92A030638000D116D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		7709F5FE2A030638000D116D /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7709F5F92A030638000D116D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 772B96BC29F2D4C9005D885B /* Project object */;
 }

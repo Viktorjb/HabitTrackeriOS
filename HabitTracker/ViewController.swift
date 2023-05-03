@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
 
     //Main model object
     var habits = HabitList()
+    
+    let db = Firestore.firestore()
     
     let tableViewSegue = "tableViewSegue"
     
@@ -20,6 +23,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        habits.listenToFirestore()
+        //habits.writeToFirestore()
         //Write out best streaks
         updateStreakList()
         

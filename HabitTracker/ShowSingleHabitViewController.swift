@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Firebase
 
 class ShowSingleHabitViewController: UIViewController {
 
     var habit : Habit?
+    let db = Firestore.firestore()
     
     @IBOutlet weak var doneButtonOutlet: UIButton!
     @IBOutlet weak var habitNameTextView: UITextView!
@@ -22,6 +24,7 @@ class ShowSingleHabitViewController: UIViewController {
         if(!hasBeenDone){
             habit?.doneToday()
             habit?.updateStreak()
+            updateFirestoreDoc()
             //return to previous view
             navigationController?.popViewController(animated: true)
         }
@@ -52,6 +55,15 @@ class ShowSingleHabitViewController: UIViewController {
         statsTextView.text = "Best streak: " + String(topStreak) +
         "\nLast completed: " + lastDate
         
+    }
+    
+    //update the firestore document
+    func updateFirestoreDoc(){
+        if let id = habit?.id{
+            db.collection("habits").document(id).updateData(["performedList": habit?.performedList])
+            db.collection("habits").document(id).updateData(["streak": habit?.streak])
+            db.collection("habits").document(id).updateData(["bestStreak": habit?.bestStreak])
+        }
     }
 
     /*

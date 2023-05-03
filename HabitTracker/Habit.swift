@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-class Habit {
+class Habit : Codable{
     
+    @DocumentID var id : String?
     //Name of the habit
     let name : String
     //A list of dates this habit has been performed
@@ -17,13 +19,14 @@ class Habit {
     var streak : Int
     var bestStreak : Int
     
-    let dateFormatter = DateFormatter()
+    //commented out as it didn't comply with codable
+    //let dateFormatter = DateFormatter()
     
     init(name: String) {
         self.name = name
         self.performedList = [String]()
         self.streak = 0
-        self.dateFormatter.dateFormat = "yyyy/MM/dd"
+        //self.dateFormatter.dateFormat = "yyyy/MM/dd"
         self.bestStreak = 0
     }
     
@@ -31,6 +34,8 @@ class Habit {
     
     //Add today to the list of dates, i.e. the habit has been performed today
     func doneToday(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
         if(performedList.contains(dateFormatter.string(from: Date()))){
             return
         }
@@ -39,11 +44,15 @@ class Habit {
     
     //returns if the habit has been done today (as bool)
     func hasBeenDoneToday() -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
         return performedList.contains(dateFormatter.string(from: Date()))
     }
     
     //Calculate the current streak (from today or yesterday)
     func updateStreak(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
         //Keeping track of the date during the while-loop
         var dateStep = dateFormatter.string(from: Date())
         //If today exists in the list, add 1 to the streak, else start at 0

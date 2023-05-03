@@ -6,18 +6,22 @@
 //
 
 import UIKit
+import Firebase
 
 class AddHabitViewController: UIViewController {
-
+    
     var habits : HabitList?
+    let db = Firestore.firestore()
     
     @IBOutlet weak var addTextField: UITextField!
     
     
     @IBAction func addHabitButton(_ sender: Any) {
         if let habitString = addTextField.text{
-            habits?.add(habit: Habit(name: habitString))
-            print("ADDED" + habitString)
+            let newHabit = Habit(name: habitString)
+            habits?.add(habit: newHabit)
+            addToFirestore(habit: newHabit)
+            
             //return to previous view
             navigationController?.popViewController(animated: true)
         }
@@ -31,6 +35,14 @@ class AddHabitViewController: UIViewController {
         addTextField.becomeFirstResponder()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func addToFirestore(habit: Habit){
+        do{
+            try db.collection("habits").addDocument(from: habit)
+        } catch{
+            print("Error sending to Database")
+        }
     }
     
 
