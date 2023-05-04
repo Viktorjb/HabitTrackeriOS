@@ -12,6 +12,7 @@ class AddHabitViewController: UIViewController {
     
     var habits : HabitList?
     let db = Firestore.firestore()
+    let auth = Auth.auth()
     
     @IBOutlet weak var addTextField: UITextField!
     
@@ -38,8 +39,11 @@ class AddHabitViewController: UIViewController {
     }
     
     func addToFirestore(habit: Habit){
+        guard let user = auth.currentUser else {return}
+        let habitsRef = db.collection("users").document(user.uid).collection("habits")
+        
         do{
-            try db.collection("habits").addDocument(from: habit)
+            try habitsRef.addDocument(from: habit)
         } catch{
             print("Error sending to Database")
         }

@@ -11,10 +11,10 @@ import Firebase
 class HabitList{
     private var habits = [Habit]()
     let db = Firestore.firestore()
+    let auth = Auth.auth()
     
     init(){
-        add(habit: Habit(name: "breathe"))
-        add(habit: Habit(name: "sleep"))
+        add(habit: Habit(name: "Read a book"))
     }
     
     var count : Int {
@@ -34,15 +34,18 @@ class HabitList{
     
     func bestStreaks() -> [Habit]{
         let sortedHabitList = habits.sorted(by: {$1.streak > $0.streak} )
-        let prefixedList = Array(sortedHabitList.prefix(3))
+        let prefixedList = Array(sortedHabitList.suffix(3))
         return prefixedList
     }
     
     //writes all habits in the list to firestore (this probably shouldn't be used)
     func writeToFirestore(){
+        guard let user = auth.currentUser else {return}
+        let habitsRef = db.collection("users").document(user.uid).collection("habits")
+        
         for habit in habits{
             do{
-                try db.collection("habits").addDocument(from: habit)
+                try habitsRef.addDocument(from: habit)
             } catch{
                 print("Error sending to Database")
             }
@@ -51,7 +54,10 @@ class HabitList{
     
     //add snapshot listener to download habit list from firestore
     func listenToFirestore() {
-        db.collection("habits").addSnapshotListener() {
+        guard let user = auth.currentUser else {return}
+        let habitsRef = db.collection("users").document(user.uid).collection("habits")
+        
+        habitsRef.addSnapshotListener() {
             snapshot, err in
             
             guard let snapshot = snapshot else {return}

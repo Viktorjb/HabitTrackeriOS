@@ -12,6 +12,7 @@ class ShowSingleHabitViewController: UIViewController {
 
     var habit : Habit?
     let db = Firestore.firestore()
+    let auth = Auth.auth()
     
     @IBOutlet weak var doneButtonOutlet: UIButton!
     @IBOutlet weak var habitNameTextView: UITextView!
@@ -59,10 +60,13 @@ class ShowSingleHabitViewController: UIViewController {
     
     //update the firestore document
     func updateFirestoreDoc(){
+        guard let user = auth.currentUser else {return}
+        let habitsRef = db.collection("users").document(user.uid).collection("habits")
+        
         if let id = habit?.id{
-            db.collection("habits").document(id).updateData(["performedList": habit?.performedList])
-            db.collection("habits").document(id).updateData(["streak": habit?.streak])
-            db.collection("habits").document(id).updateData(["bestStreak": habit?.bestStreak])
+            habitsRef.document(id).updateData(["performedList": habit?.performedList])
+            habitsRef.document(id).updateData(["streak": habit?.streak])
+            habitsRef.document(id).updateData(["bestStreak": habit?.bestStreak])
         }
     }
 
