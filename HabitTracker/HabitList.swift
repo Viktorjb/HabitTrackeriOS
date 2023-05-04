@@ -38,6 +38,11 @@ class HabitList{
         return prefixedList
     }
     
+    //sort the habit list by ID like firebase does
+    func sortByID() {
+        habits = habits.sorted(by: {$1.streak > $0.streak} )
+    }
+    
     //writes all habits in the list to firestore (this probably shouldn't be used)
     func writeToFirestore(){
         guard let user = auth.currentUser else {return}

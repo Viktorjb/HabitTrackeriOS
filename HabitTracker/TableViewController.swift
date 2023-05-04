@@ -44,7 +44,8 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "habitCell", for: indexPath)
 
-        
+        //sort the habits by ID like firebase does
+        habits?.sortByID()
         let habitName = habits?.getHabit(index: indexPath.row)
         cell.textLabel?.text = (habitName?.name ?? "nil").prefix(18) + "       Streak: " + String(habitName?.streak ?? 0)
         
