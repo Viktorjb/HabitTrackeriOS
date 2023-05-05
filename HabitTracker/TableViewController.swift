@@ -119,7 +119,8 @@ class TableViewController: UITableViewController {
             guard let indexPath = tableView.indexPath(for: cell) else {return}
             guard let habit = habits?.getHabit(index: indexPath.row) else {return}
             
-            
+            vc.index = indexPath.row
+            vc.habits = habits
             vc.habit = habit
         }
         
