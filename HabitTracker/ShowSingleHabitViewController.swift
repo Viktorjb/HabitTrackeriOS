@@ -61,7 +61,6 @@ class ShowSingleHabitViewController: UIViewController {
         }
         
         loadStats()
-        // Do any additional setup after loading the view.
     }
     
     //Update the stats at the bottom of the page
