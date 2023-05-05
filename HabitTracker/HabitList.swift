@@ -43,6 +43,11 @@ class HabitList{
         habits = habits.sorted(by: {$1.streak > $0.streak} )
     }
     
+    //remove habit
+    func removeAt(index: Int){
+        habits.remove(at: index)
+    }
+    
     //writes all habits in the list to firestore (this probably shouldn't be used)
     func writeToFirestore(){
         guard let user = auth.currentUser else {return}

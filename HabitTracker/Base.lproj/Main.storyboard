@@ -195,8 +195,15 @@
                             <constraint firstItem="N3f-px-yOh" firstAttribute="leading" secondItem="xtf-BR-IRK" secondAttribute="leading" constant="99" id="zJF-y9-WXB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Habit Details" id="57R-al-C9h"/>
+                    <navigationItem key="navigationItem" title="Habit Details" id="57R-al-C9h">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="trash" id="BGF-Vo-dHJ">
+                            <connections>
+                                <action selector="deleteButton:" destination="WBi-nM-T7d" id="vS9-Wa-VJT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="deleteButtonOutlet" destination="BGF-Vo-dHJ" id="9lD-dr-ND3"/>
                         <outlet property="doneButtonOutlet" destination="N3f-px-yOh" id="4Do-lC-D0N"/>
                         <outlet property="habitNameTextView" destination="g6K-bo-04s" id="POu-rD-jDr"/>
                         <outlet property="habitStreakLabel" destination="yIe-iZ-bfm" id="7fd-Bb-Mxp"/>

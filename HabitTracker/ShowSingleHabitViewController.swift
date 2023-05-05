@@ -11,6 +11,8 @@ import Firebase
 class ShowSingleHabitViewController: UIViewController {
 
     var habit : Habit?
+    var habits : HabitList?
+    var index : Int?
     let db = Firestore.firestore()
     let auth = Auth.auth()
     
@@ -18,6 +20,9 @@ class ShowSingleHabitViewController: UIViewController {
     @IBOutlet weak var habitNameTextView: UITextView!
     @IBOutlet weak var habitStreakLabel: UILabel!
     @IBOutlet weak var statsTextView: UITextView!
+    @IBOutlet weak var deleteButtonOutlet: UIBarButtonItem!
+    
+    
     
     //Handle button tap, if habit hasn't been done today, if it has do nothing
     @IBAction func doneButton(_ sender: Any) {
@@ -30,6 +35,17 @@ class ShowSingleHabitViewController: UIViewController {
             navigationController?.popViewController(animated: true)
         }
     }
+    
+    //handle delete button
+    @IBAction func deleteButton(_ sender: Any) {
+        if let removeIndex = index{
+            habits?.removeAt(index: removeIndex)
+            removeFirestoreDoc()
+        }
+        navigationController?.popViewController(animated: true)
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +72,20 @@ class ShowSingleHabitViewController: UIViewController {
         statsTextView.text = "Best streak: " + String(topStreak) +
         "\nLast completed: " + lastDate
         
+    }
+    
+    //remove document from firestore
+    func removeFirestoreDoc(){
+        guard let user = auth.currentUser else {return}
+        let habitsRef = db.collection("users").document(user.uid).collection("habits")
+        
+        if let id = habit?.id{
+            habitsRef.document(id).delete() { err in
+                if let err = err {
+                    print("Error deleting: \(err)")
+                }
+            }
+        }
     }
     
     //update the firestore document
